@@ -1,1 +1,19 @@
-<h1>Hello world!</h1>
+{% extends 'base.html' %}
+
+{% block title %}
+    Blog | INIT Media
+{% endblock %}
+
+
+{% block content %}
+
+<h1>Post</h1>
+{% for post in object_list %}
+    <h2><a href="{% url 'post' post.pk %}">{{ post.title }}</a></h2>
+    <p>By: {{ post.author.last_name }}</p>
+    <p><a class="btn btn-outline-secondary" href="{% url 'update_post' post.pk %}">Edit</a></p>
+    <p>{{ post.body }}</p>
+    <hr>
+{% endfor %}
+
+{% endblock %}
