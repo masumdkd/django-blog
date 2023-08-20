@@ -5,15 +5,22 @@ Update Post | Sam IT
 {% endblock %}
 
 {% block content %}
-<h1>Update Post</h1>
-<div class="form-group">
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" href="" class="btn btn-success">Update</button>
-    </form>
-</div>
 
+    {% if user.is_authenticated %}
 
+    <h1>Update Post</h1>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" href="" class="btn btn-success">Update</button>
+        </form>
+    </div>
+
+    {% else %}
+
+    <p class="text-center">404 - Page Not Found!</p>
+
+    {% endif %}
 
 {% endblock %}

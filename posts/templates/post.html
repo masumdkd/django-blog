@@ -6,7 +6,13 @@
 
 
 {% block content %}
-<p><a class="btn btn-outline-secondary" href="{% url 'update_post' post.pk %}">Edit</a></p>
+    {% if user.is_authenticated %}
+    <p>
+        <a class="btn btn-outline-secondary" href="{% url 'update_post' post.pk %}">Edit</a>
+        <a class="btn btn-outline-danger" href="{% url 'delete_post' post.pk %}">Delete</a>
+    </p>
+    {% endif %}
+
 <h1>{{ post.title }}</h1>
 <p>By: {{ post.author.last_name }}</p>
 <p>{{ post.body }}</p>
