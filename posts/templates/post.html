@@ -14,7 +14,7 @@
     {% endif %}
 
 <h1>{{ post.title }}</h1>
-<p>By: {{ post.author.last_name }}</p>
+<p>In {{ post.category }} | By: {{ post.author.last_name }} @ {{ post.date}}  </p>
 <p>{{ post.body }}</p>
 
 {% endblock %}

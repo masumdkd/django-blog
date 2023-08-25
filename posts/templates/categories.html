@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Blog | INIT Media
+{% endblock %}
+
+
+{% block content %}
+
+
+{% if categories_post %}
+
+    <h1>{{ cats }}</h1>
+
+    {% for post in categories_post %}
+            <h2><a href="{% url 'post' post.pk %}">{{ post.title }}</a></h2>
+            <p>By: {{ post.author.last_name }} @ {{ post.date}}  </p>
+            <p>
+                {% if user.is_authenticated %}
+                <a class="btn btn-outline-secondary" href="{% url 'update_post' post.pk %}">Edit</a>
+                <a class="btn btn-outline-danger" href="{% url 'delete_post' post.pk %}">Delete</a>
+                {% endif %}
+            
+            </p>
+            <p>{{ post.body|slice:":200" }}  <a href="{% url 'post' post.pk %}">read more</a></p>
+            <hr>
+
+    {% endfor %}
+
+{% else %}
+    <h1>Sorry! This page doesn't exist.</h1>
+{% endif %}
+
+{% endblock %}
